@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clearing the Reviewers — Author Guidance · Issues &amp; Studies</title>
+<title>Clearing the Reviewers — Author Guidance · Academic Journal Publication</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1c2b34;
-    --paper:#f7f4ee;
-    --surface:#fdfbf6;
+    --ink:#1c2b34;          /* deep blue-black ink */
+    --paper:#f7f4ee;        /* warm paper — page */
+    --surface:#fdfbf6;      /* near-white card */
     --margin:#ece6d9;
     --line:#d9d1c2;
-    --red:#a5392b;
+    --red:#a5392b;          /* the editor's red pen */
     --red-wash:#f3e3df;
     --slate:#66747c;
-    --green:#3f6b57;
+    --green:#3f6b57;        /* the remedy */
     --green-wash:#e2ece6;
     --amber:#b07d2a;
 
@@ -149,13 +149,34 @@
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+
+  /* diagnostic panel */
+  .concern{scroll-margin-top:90px;}
+  .diag{margin-top:30px;}
+  .diag .d-head{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px;}
+  .diag.gaps{border-left:3px solid var(--red);background:rgba(165,57,43,.16);padding:18px 22px 14px;border-radius:0 4px 4px 0;}
+  .diag.done{border-left:3px solid #5fbf8e;background:rgba(63,107,87,.26);padding:18px 22px;border-radius:0 4px 4px 0;}
+  .diag.gaps .d-head{color:#eaa79d;}
+  .diag.done .d-head{color:#a7e0c4;margin-bottom:10px;}
+  .diag a.gap{display:flex;gap:12px;align-items:baseline;padding:10px 0;border-top:1px solid rgba(255,255,255,.08);color:#dde3e0;text-decoration:none;transition:color .15s;}
+  .diag a.gap:hover{color:#fff;}
+  .diag a.gap .gk{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#eaa79d;white-space:nowrap;flex:0 0 auto;min-width:108px;}
+  .diag a.gap .gt{font-family:var(--display);font-style:italic;font-size:1rem;line-height:1.4;}
+  .diag a.gap .arr{margin-left:auto;color:#9fb0ab;font-family:var(--mono);}
+  .diag.done .d-msg{margin:0;color:#dfeee7;font-size:1.02rem;line-height:1.55;}
+
+  /* back to top */
+  .totop-wrap{text-align:center;padding:30px 0 6px;}
+  .totop{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:11px 22px;background:var(--surface);transition:color .18s,border-color .18s;}
+  .totop:hover{color:var(--red);border-color:var(--red);}
+  .totop .ar{font-size:.95rem;line-height:1;}
 </style>
 </head>
 <body>
 
-<header class="topbar">
+<header class="topbar" id="top">
   <div class="wrap">
-    <div class="mark"><em>Issues &amp; Studies</em> · Author Guidance</div>
+    <div class="mark"><em>Academic Journal Publication</em> · Author Guidance</div>
     <nav>
       <a href="#pattern">The pattern</a>&nbsp;&nbsp;
       <a href="#stages">Nine problems</a>&nbsp;&nbsp;
@@ -206,7 +227,7 @@
       <span class="s-sub">Why a paper never reaches a referee</span>
     </div>
 
-    <article class="concern reveal">
+    <article id="c1" class="concern reveal">
       <div class="num">I</div>
       <div>
         <div class="topline"><p class="topic">The puzzle</p><span class="freq vc">Very common</span></div>
@@ -217,7 +238,7 @@
       </div>
     </article>
 
-    <article class="concern reveal">
+    <article id="c2" class="concern reveal">
       <div class="num">II</div>
       <div>
         <div class="topline"><p class="topic">The framework</p><span class="freq vc">Very common</span></div>
@@ -228,7 +249,7 @@
       </div>
     </article>
 
-    <article class="concern reveal">
+    <article id="c3" class="concern reveal">
       <div class="num">III</div>
       <div>
         <div class="topline"><p class="topic">The concept</p><span class="freq vc">Very common</span></div>
@@ -248,7 +269,7 @@
       <span class="s-sub">What referees flag</span>
     </div>
 
-    <article class="concern reveal">
+    <article id="c4" class="concern reveal">
       <div class="num">IV</div>
       <div>
         <div class="topline"><p class="topic">The contribution</p><span class="freq vc">Very common</span></div>
@@ -259,7 +280,7 @@
       </div>
     </article>
 
-    <article class="concern reveal">
+    <article id="c5" class="concern reveal">
       <div class="num">V</div>
       <div>
         <div class="topline"><p class="topic">The evidence</p><span class="freq c">Common</span></div>
@@ -270,7 +291,7 @@
       </div>
     </article>
 
-    <article class="concern reveal">
+    <article id="c6" class="concern reveal">
       <div class="num">VI</div>
       <div>
         <div class="topline"><p class="topic">The literature</p><span class="freq vc">Very common</span></div>
@@ -290,7 +311,7 @@
       <span class="s-sub">What sends a paper back</span>
     </div>
 
-    <article class="concern reveal">
+    <article id="c7" class="concern reveal">
       <div class="num">VII</div>
       <div>
         <div class="topline"><p class="topic">The design</p><span class="freq o">Occasional · usually decisive</span></div>
@@ -301,7 +322,7 @@
       </div>
     </article>
 
-    <article class="concern reveal">
+    <article id="c8" class="concern reveal">
       <div class="num">VIII</div>
       <div>
         <div class="topline"><p class="topic">Scope &amp; balance</p><span class="freq c">Common</span></div>
@@ -312,7 +333,7 @@
       </div>
     </article>
 
-    <article class="concern reveal">
+    <article id="c9" class="concern reveal">
       <div class="num">IX</div>
       <div>
         <div class="topline"><p class="topic">The craft</p><span class="freq c">Common · compounds everything</span></div>
@@ -339,16 +360,17 @@
     </div>
 
     <ul class="list" id="list">
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">I · Puzzle</span>I open with a <b>genuine puzzle</b> existing explanations leave unresolved — not just a topic to survey.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">II · Framework</span>My framework <b>generates testable expectations</b> and is applied from introduction to conclusion.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">III · Concept</span>Every central concept is <b>defined, measurable, and kept distinct</b> from adjacent concepts.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">IV · Contribution</span>I can <b>state my contribution in one sentence</b> and have situated it against the closest work — including my own.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">V · Evidence</span>Each causal claim <b>has a mechanism, rules out the obvious alternative</b>, and uses the primary sources a specialist expects.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VI · Literature</span>My review <b>maps the real debate, reaches recent work</b>, and engages scholarship that disagrees with me.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VII · Design</span>My <b>sample, case, and method can bear the weight</b> of my claims.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VIII · Scope</span>My <b>claims are no broader than my evidence</b>, and I give the opposing case a fair hearing.</span></label></li>
-      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">IX · Craft</span><b>Data are current; prose, citations, and structure are clean</b> — and nothing important debuts in the conclusion.</span></label></li>
+      <li class="item" data-target="#c1"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">I · Puzzle</span>I open with a <b>genuine puzzle</b> existing explanations leave unresolved — not just a topic to survey.</span></label></li>
+      <li class="item" data-target="#c2"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">II · Framework</span>My framework <b>generates testable expectations</b> and is applied from introduction to conclusion.</span></label></li>
+      <li class="item" data-target="#c3"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">III · Concept</span>Every central concept is <b>defined, measurable, and kept distinct</b> from adjacent concepts.</span></label></li>
+      <li class="item" data-target="#c4"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">IV · Contribution</span>I can <b>state my contribution in one sentence</b> and have situated it against the closest work — including my own.</span></label></li>
+      <li class="item" data-target="#c5"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">V · Evidence</span>Each causal claim <b>has a mechanism, rules out the obvious alternative</b>, and uses the primary sources a specialist expects.</span></label></li>
+      <li class="item" data-target="#c6"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VI · Literature</span>My review <b>maps the real debate, reaches recent work</b>, and engages scholarship that disagrees with me.</span></label></li>
+      <li class="item" data-target="#c7"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VII · Design</span>My <b>sample, case, and method can bear the weight</b> of my claims.</span></label></li>
+      <li class="item" data-target="#c8"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VIII · Scope</span>My <b>claims are no broader than my evidence</b>, and I give the opposing case a fair hearing.</span></label></li>
+      <li class="item" data-target="#c9"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">IX · Craft</span><b>Data are current; prose, citations, and structure are clean</b> — and nothing important debuts in the conclusion.</span></label></li>
     </ul>
+    <div id="diagnosis" class="diag" aria-live="polite"></div>
   </div>
 </section>
 
@@ -362,10 +384,14 @@
 
 <footer>
   <div class="wrap">
-    <span class="name">Issues &amp; Studies</span>
-    <span class="sub">A social science quarterly on China, Taiwan, and East Asian affairs · Author guidance distilled from referee reports</span>
+    <span class="name">Academic Journal Publication</span>
+    <span class="sub">Guidance for authors preparing manuscripts for peer review · Distilled from referee reports</span>
   </div>
 </footer>
+
+<div class="wrap totop-wrap">
+  <a class="totop" href="#top" onclick="window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return false;"><span class="ar">&#8593;</span> Back to top</a>
+</div>
 
 <script>
   (function(){
@@ -374,6 +400,7 @@
     var bar = document.getElementById('bar');
     var count = document.getElementById('count');
     var verdict = document.getElementById('verdict');
+    var diag = document.getElementById('diagnosis');
 
     function tier(n){
       if(n === 0) return {label:'Not yet ready', color:'#a5392b'};
@@ -382,6 +409,30 @@
       if(n < 9)  return {label:'Nearly clear', color:'#7fa890'};
       return {label:'Ready to submit', color:'#5fbf8e'};
     }
+
+    function diagnose(){
+      var unchecked = boxes.filter(function(b){return !b.checked;});
+      if(unchecked.length === 0){
+        diag.className = 'diag done';
+        diag.innerHTML = '<p class="d-head">Ready</p>' +
+          '<p class="d-msg">All nine cleared. The reviewers’ usual ground is covered — which frees them to engage what you actually have to say.</p>';
+        return;
+      }
+      var rows = unchecked.map(function(b){
+        var li = b.closest('.item');
+        var target = li.getAttribute('data-target');
+        var key = li.querySelector('.k').textContent.trim();
+        var h = target ? document.querySelector(target + ' h3') : null;
+        var title = h ? h.textContent.trim() : '';
+        return '<a class="gap" href="' + target + '">' +
+                 '<span class="gk">' + key + '</span>' +
+                 '<span class="gt">' + title + '</span>' +
+                 '<span class="arr">↑</span></a>';
+      }).join('');
+      diag.className = 'diag gaps';
+      diag.innerHTML = '<p class="d-head">Where to look next — ' + unchecked.length + ' to address</p>' + rows;
+    }
+
     function update(){
       var n = boxes.filter(function(b){return b.checked;}).length;
       var t = tier(n);
@@ -390,6 +441,7 @@
       count.textContent = n + ' of ' + TOTAL + ' cleared';
       verdict.textContent = t.label;
       verdict.style.color = t.color;
+      diagnose();
     }
     boxes.forEach(function(b){ b.addEventListener('change', update); });
     update();
