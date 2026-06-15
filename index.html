@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearing the Reviewers — Author Guidance · Issues &amp; Studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b34;
+    --paper:#f7f4ee;
+    --surface:#fdfbf6;
+    --margin:#ece6d9;
+    --line:#d9d1c2;
+    --red:#a5392b;
+    --red-wash:#f3e3df;
+    --slate:#66747c;
+    --green:#3f6b57;
+    --green-wash:#e2ece6;
+    --amber:#b07d2a;
+
+    --display:"Fraunces",Georgia,serif;
+    --body:"IBM Plex Sans",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+    --wrap:1120px;
+    --col:680px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px;}
+  .col{max-width:var(--col);}
+  a{color:var(--red);}
+  ::selection{background:var(--red-wash);}
+
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin:0;}
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;}
+
+  /* top bar */
+  .topbar{border-bottom:1px solid var(--line);background:rgba(247,244,238,.85);backdrop-filter:saturate(120%) blur(6px);position:sticky;top:0;z-index:20;}
+  .topbar .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-top:16px;padding-bottom:16px;}
+  .mark{font-family:var(--display);font-weight:600;font-size:1.05rem;}
+  .mark em{font-style:italic;}
+  .topbar nav{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);}
+  .topbar nav a{color:var(--slate);text-decoration:none;border-bottom:1px solid transparent;}
+  .topbar nav a:hover{color:var(--ink);border-bottom-color:var(--red);}
+  @media(max-width:640px){.topbar nav{display:none;}}
+
+  /* hero */
+  .hero{padding:74px 0 60px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px;}.hero{padding:48px 0 40px;}}
+  .hero h1{font-size:clamp(2.5rem,5.6vw,4rem);letter-spacing:-.015em;margin:18px 0 0;}
+  .hero h1 .struck{position:relative;white-space:nowrap;}
+  .hero h1 .struck::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;animation:strike 1s cubic-bezier(.2,.7,.2,1) .5s forwards;}
+  .hero p.lede{font-size:1.12rem;color:#3a4750;margin:22px 0 0;max-width:48ch;}
+  .hero .stat{font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;color:var(--slate);margin:24px 0 0;border-top:1px dashed var(--line);padding-top:16px;max-width:48ch;}
+
+  .specimen{background:var(--surface);border:1px solid var(--line);border-radius:3px;box-shadow:0 18px 40px -28px rgba(28,43,52,.45);padding:30px 30px 26px;}
+  .specimen .ms-meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px;display:flex;justify-content:space-between;gap:10px;}
+  .specimen .ms-text{font-family:var(--display);font-size:1.18rem;line-height:1.55;color:var(--ink);margin:0;}
+  .specimen .flagged{background:linear-gradient(transparent 62%, var(--red-wash) 62%);text-decoration:underline wavy var(--red);text-underline-offset:5px;text-decoration-thickness:1.5px;}
+  .annot{margin-top:22px;border-left:3px solid var(--red);background:var(--red-wash);padding:13px 16px;border-radius:0 3px 3px 0;opacity:0;transform:translateY(6px);animation:rise .7s ease 1.25s forwards;}
+  .annot .tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:0 0 4px;font-weight:600;}
+  .annot p{margin:0;font-size:.95rem;color:#4a2e29;font-style:italic;}
+  @keyframes strike{to{transform:scaleX(1);}}
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* pattern intro */
+  .band{border-top:1px solid var(--line);}
+  .pattern{padding:64px 0 8px;}
+  .pattern h2{font-size:clamp(1.7rem,3.2vw,2.3rem);letter-spacing:-.01em;}
+  .pattern p{color:#3a4750;margin:18px 0 0;}
+  .pattern .note{font-family:var(--mono);font-size:.78rem;line-height:1.6;color:var(--slate);margin-top:26px;border-top:1px dashed var(--line);padding-top:18px;max-width:62ch;}
+
+  /* stage */
+  .stage{padding:46px 0 6px;}
+  .stage-head{display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:6px;}
+  .stage-head .s-num{font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--red);letter-spacing:.04em;}
+  .stage-head h2{font-size:clamp(1.4rem,2.6vw,1.85rem);letter-spacing:-.01em;}
+  .stage-head .s-sub{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-left:auto;text-align:right;}
+  @media(max-width:560px){.stage-head{flex-wrap:wrap;gap:6px;}.stage-head .s-sub{margin-left:0;text-align:left;width:100%;}}
+
+  /* concern */
+  .concern{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:34px 0;border-top:1px solid var(--line);}
+  .concern:first-of-type{border-top:none;}
+  @media(max-width:680px){.concern{grid-template-columns:1fr;gap:12px;padding:28px 0;}}
+  .concern .num{font-family:var(--mono);font-size:1rem;font-weight:600;color:var(--red);letter-spacing:.02em;padding-top:4px;}
+  .topline{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .concern .topic{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin:0;}
+  .freq{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:99px;font-weight:600;white-space:nowrap;}
+  .freq.vc{background:var(--red-wash);color:var(--red);}
+  .freq.c{background:#f3ead9;color:var(--amber);}
+  .freq.o{background:var(--green-wash);color:var(--green);}
+  .concern h3{font-size:1.42rem;letter-spacing:-.01em;margin:6px 0 0;}
+
+  .says{border-left:3px solid var(--red);background:var(--red-wash);padding:13px 18px;border-radius:0 3px 3px 0;margin:18px 0;}
+  .says .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600;margin:0 0 5px;}
+  .says p{margin:0;font-family:var(--display);font-style:italic;font-size:1.04rem;line-height:1.5;color:#4a2e29;}
+  .why{margin:0 0 14px;color:#3a4750;}
+  .why b{color:var(--ink);font-weight:600;}
+  .fix{border-left:3px solid var(--green);background:var(--green-wash);padding:12px 18px;border-radius:0 3px 3px 0;}
+  .fix .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600;margin:0 0 5px;}
+  .fix p{margin:0;color:#22382f;font-size:.96rem;}
+
+  /* checklist */
+  .check{background:var(--ink);color:#eef1ef;padding:72px 0;}
+  .check .eyebrow{color:#9fb0ab;}
+  .check h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.5rem);letter-spacing:-.01em;margin-top:14px;}
+  .check .intro{color:#c3ccc9;margin:16px 0 36px;max-width:56ch;}
+  .meter-wrap{margin:0 0 32px;}
+  .meter-head{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#9fb0ab;margin-bottom:10px;}
+  .meter-head .verdict{color:#fff;font-weight:600;transition:color .3s;}
+  .meter{height:8px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;}
+  .meter span{display:block;height:100%;width:0;background:var(--red);border-radius:99px;transition:width .45s cubic-bezier(.2,.7,.2,1),background .45s;}
+  .list{list-style:none;margin:0;padding:0;display:grid;gap:2px;}
+  .item{display:flex;gap:15px;align-items:flex-start;padding:14px 16px;border-radius:4px;cursor:pointer;transition:background .18s;}
+  .item:hover{background:rgba(255,255,255,.05);}
+  .item input{position:absolute;opacity:0;width:1px;height:1px;}
+  .box{flex:0 0 22px;height:22px;margin-top:1px;border:1.5px solid #5f6f78;border-radius:5px;display:grid;place-items:center;transition:border-color .18s,background .18s;}
+  .box svg{width:13px;height:13px;opacity:0;transform:scale(.6);transition:opacity .18s,transform .18s;}
+  .item input:checked + .box{background:var(--green);border-color:var(--green);}
+  .item input:checked + .box svg{opacity:1;transform:none;}
+  .item input:focus-visible + .box{outline:2px solid #fff;outline-offset:3px;}
+  .item .txt{color:#dde3e0;font-size:1rem;line-height:1.5;}
+  .item .txt .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8fa39d;margin-right:8px;}
+  .item input:checked ~ .txt{color:#fff;}
+  .item .txt b{font-weight:600;}
+
+  /* closing */
+  .closing{padding:64px 0;}
+  .closing .col{max-width:620px;}
+  .closing h2{font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.01em;}
+  .closing p{color:#3a4750;margin:18px 0 0;}
+  footer{border-top:1px solid var(--line);padding:34px 0 56px;}
+  footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline;}
+  footer .name{font-family:var(--display);font-style:italic;font-size:1.05rem;}
+  footer .sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+    .hero h1 .struck::after{transform:scaleX(1);}
+    .annot{opacity:1;transform:none;}
+  }
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="mark"><em>Issues &amp; Studies</em> · Author Guidance</div>
+    <nav>
+      <a href="#pattern">The pattern</a>&nbsp;&nbsp;
+      <a href="#stages">Nine problems</a>&nbsp;&nbsp;
+      <a href="#check">Self-check</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">A guide for authors</p>
+      <h1>What gets a paper rejected here is rarely the <span class="struck">topic</span>.</h1>
+      <p class="lede">Reviewers seldom doubt that a subject is worth studying. They doubt that a manuscript has turned a subject into an <em>argument</em>. Read across our recent decisions and the same nine problems recur — and most rejected papers stumble on several at once.</p>
+      <p class="stat">Distilled from roughly two dozen recent editorial decisions: desk rejections, post-review rejections, and major-revision invitations.</p>
+    </div>
+
+    <div class="specimen" aria-label="An illustrative reviewer annotation">
+      <div class="ms-meta"><span>Manuscript — p. 4</span><span>under review</span></div>
+      <p class="ms-text">This framework offers a <span class="flagged">novel account</span> of regional stability, and explains why conflict has been avoided.</p>
+      <div class="annot">
+        <p class="tag">Reviewer · margin note</p>
+        <p>“What, specifically, is novel here? The claim is asserted rather than shown — and much of it restates what we already knew.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+<section class="pattern" id="pattern">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">The pattern</p>
+      <h2>Reviewers tend to reject the same things.</h2>
+      <p>A referee report can look like a long list of particular objections. Read enough of them and the particulars resolve into a short, stable set of underlying problems — the nine below. They are arranged by <b>where in the process each one usually stops a manuscript</b>: the first three rarely survive the editor's desk; the next three are what referees flag; the last three more often send a paper back for revision than end it outright.</p>
+      <p class="note">These notes are anonymised and generalised across many manuscripts. No paper, author, or referee is identifiable — what remains is the pattern, and what each problem is really asking you to fix before you submit.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stages">
+
+  <!-- STAGE 1 -->
+  <div class="wrap col stage">
+    <div class="stage-head">
+      <span class="s-num">Stage 1</span>
+      <h2>Before review</h2>
+      <span class="s-sub">Why a paper never reaches a referee</span>
+    </div>
+
+    <article class="concern reveal">
+      <div class="num">I</div>
+      <div>
+        <div class="topline"><p class="topic">The puzzle</p><span class="freq vc">Very common</span></div>
+        <h3>A topic is not a question.</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The paper describes its subject but never identifies a puzzle it sets out to resolve — it reads as a survey, not an inquiry.”</p></div>
+        <p class="why">A question answerable by description alone generates <b>no expectation to test</b>. Reviewers can't see what the analysis adds beyond what is already known, so the paper stops at the editor's desk.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Open with a genuine tension that existing explanations leave unresolved, and make the whole paper the attempt to resolve it.</p></div>
+      </div>
+    </article>
+
+    <article class="concern reveal">
+      <div class="num">II</div>
+      <div>
+        <div class="topline"><p class="topic">The framework</p><span class="freq vc">Very common</span></div>
+        <h3>An organizing scheme is not an explanatory theory.</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“Several theories are invoked but never reconciled or applied; the framework sorts cases rather than explaining them, and adds little beyond established theory.”</p></div>
+        <p class="why">A framework that only organizes <b>produces no causal expectations to test</b>; one that's introduced and then never used is decoration. Either way, the theory does no work.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Commit to one coherent logic, show what propositions it generates, apply it from introduction to conclusion, and say what it explains that existing theory cannot.</p></div>
+      </div>
+    </article>
+
+    <article class="concern reveal">
+      <div class="num">III</div>
+      <div>
+        <div class="topline"><p class="topic">The concept</p><span class="freq vc">Very common</span></div>
+        <h3>Undefined, unoperationalized, or conflated.</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The key term is never defined — or is quietly conflated with an adjacent concept it is not — so it's impossible to tell how it was measured.”</p></div>
+        <p class="why">An undefined core concept makes every claim resting on it <b>impossible to falsify</b>; and conflating it with a neighbouring idea invites the most damaging objection of all — that you are studying something other than what you claim.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Define each load-bearing concept where it first appears, show how it's identified in your material, and guard the boundary with the concepts it could be mistaken for.</p></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="wrap col stage">
+    <div class="stage-head">
+      <span class="s-num">Stage 2</span>
+      <h2>In review</h2>
+      <span class="s-sub">What referees flag</span>
+    </div>
+
+    <article class="concern reveal">
+      <div class="num">IV</div>
+      <div>
+        <div class="topline"><p class="topic">The contribution</p><span class="freq vc">Very common</span></div>
+        <h3>What is new, and why does it matter?</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The evidence is solid, but what here is new? Much of this confirms what we already knew, or repeats a move others have made.”</p></div>
+        <p class="why">Solidity alone earns no recommendation. A paper that doesn't situate itself against its closest neighbours — <b>including the author's own earlier work</b> — reads as a summary, and blurring new from previously published raises self-overlap concerns at the same time.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>State your contribution in one plain sentence, early and again at the payoff, and situate it explicitly against the closest existing work.</p></div>
+      </div>
+    </article>
+
+    <article class="concern reveal">
+      <div class="num">V</div>
+      <div>
+        <div class="topline"><p class="topic">The evidence</p><span class="freq c">Common</span></div>
+        <h3>Asserted, not shown.</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The claim that X drove Y is asserted but never demonstrated; the evidence is scattered, and the obvious primary sources go unused.”</p></div>
+        <p class="why">Causal verbs — <i>catalysed, drove, shaped</i> — invite scrutiny of the mechanism. If a concurrent event could explain the same outcome, or the documents a specialist expects are missing, <b>the section collapses however plausible it reads</b>.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>For each causal claim, show the mechanism and rule out the obvious rival; anchor generalizations to specific sources; use the primary evidence the field expects; and keep your certainty within the data.</p></div>
+      </div>
+    </article>
+
+    <article class="concern reveal">
+      <div class="num">VI</div>
+      <div>
+        <div class="topline"><p class="topic">The literature</p><span class="freq vc">Very common</span></div>
+        <h3>Who are you in conversation with?</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The review is too narrow — a few authors standing in for whole fields, the most relevant recent work missing, key sources cited then dropped.”</p></div>
+        <p class="why">Missing the obvious counter-argument signals a gap or a one-sided case; a review built from policy reports rather than scholarship <b>doesn't enter the conversation the journal serves</b>.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Map the real debate, reach the last decade, engage the work that would challenge you — and use sources analytically rather than listing them.</p></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="wrap col stage">
+    <div class="stage-head">
+      <span class="s-num">Stage 3</span>
+      <h2>In revision</h2>
+      <span class="s-sub">What sends a paper back</span>
+    </div>
+
+    <article class="concern reveal">
+      <div class="num">VII</div>
+      <div>
+        <div class="topline"><p class="topic">The design</p><span class="freq o">Occasional · usually decisive</span></div>
+        <h3>Can the design bear the claim?</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The sample is too small for a model this complex; the case differs from the phenomenon theorized, so the central causal link cannot be identified.”</p></div>
+        <p class="why">When the design can't support the weight placed on it — overfitting, weak generalizability, a case–theory mismatch — <b>reviewers question the study itself</b>, not merely its details. That is the hardest objection to fix in revision.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Match your claims to what your sample, case, and method can establish, and address validity and identification head-on rather than in a closing caveat.</p></div>
+      </div>
+    </article>
+
+    <article class="concern reveal">
+      <div class="num">VIII</div>
+      <div>
+        <div class="topline"><p class="topic">Scope &amp; balance</p><span class="freq c">Common</span></div>
+        <h3>Too much, or too one-sided.</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The paper covers too much ground to evidence any of it — or it reads as a defence rather than an analysis, engaging only what flatters its conclusion.”</p></div>
+        <p class="why">Breadth reads as ambition in a proposal and as thinness in a finished article. And a one-sided case — or a loaded binary like “the West” versus “developing countries” — <b>undermines trust in the analysis</b>.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Narrow to the argument you can prove and label the rest as future work; give the strongest opposing case a fair hearing.</p></div>
+      </div>
+    </article>
+
+    <article class="concern reveal">
+      <div class="num">IX</div>
+      <div>
+        <div class="topline"><p class="topic">The craft</p><span class="freq c">Common · compounds everything</span></div>
+        <h3>The last mile.</h3>
+        <div class="says"><p class="tag">What reviewers say</p><p>“The data are out of date, several passages need rewriting, references are missing or mis-styled, and a new idea appears for the first time in the conclusion.”</p></div>
+        <p class="why">Avoidable flaws make a strong argument look unfinished and <b>hand a hesitant reviewer easy reasons to say no</b>. The last mile is where goodwill is won or lost.</p>
+        <div class="fix"><p class="tag">Before you submit</p><p>Refresh time-sensitive data, proofread hardest what you wrote last, conform to the journal's citation style, and introduce nothing important in the conclusion.</p></div>
+      </div>
+    </article>
+  </div>
+
+</section>
+</div>
+
+<section class="check" id="check">
+  <div class="wrap col">
+    <p class="eyebrow">Before you submit</p>
+    <h2>Nine questions, asked honestly.</h2>
+    <p class="intro">One question for each problem above. Tick it only if it's true of the manuscript as it stands — not as you intend it to be. The meter reflects how much of the reviewers' usual ground you've already cleared.</p>
+
+    <div class="meter-wrap">
+      <div class="meter-head"><span id="count">0 of 9 cleared</span><span class="verdict" id="verdict">Not yet ready</span></div>
+      <div class="meter"><span id="bar"></span></div>
+    </div>
+
+    <ul class="list" id="list">
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">I · Puzzle</span>I open with a <b>genuine puzzle</b> existing explanations leave unresolved — not just a topic to survey.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">II · Framework</span>My framework <b>generates testable expectations</b> and is applied from introduction to conclusion.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">III · Concept</span>Every central concept is <b>defined, measurable, and kept distinct</b> from adjacent concepts.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">IV · Contribution</span>I can <b>state my contribution in one sentence</b> and have situated it against the closest work — including my own.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">V · Evidence</span>Each causal claim <b>has a mechanism, rules out the obvious alternative</b>, and uses the primary sources a specialist expects.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VI · Literature</span>My review <b>maps the real debate, reaches recent work</b>, and engages scholarship that disagrees with me.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VII · Design</span>My <b>sample, case, and method can bear the weight</b> of my claims.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">VIII · Scope</span>My <b>claims are no broader than my evidence</b>, and I give the opposing case a fair hearing.</span></label></li>
+      <li class="item"><label style="display:contents"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="txt"><span class="k">IX · Craft</span><b>Data are current; prose, citations, and structure are clean</b> — and nothing important debuts in the conclusion.</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap col">
+    <p class="eyebrow">One honest caveat</p>
+    <h2>No guide guarantees acceptance.</h2>
+    <p>But a manuscript that clears the first six of these before submission, and is polished against the last three, rarely fails for the reasons above — which frees a reviewer to engage what you actually have to say rather than what you forgot to do. That is the difference between a desk rejection and a fair hearing.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="name">Issues &amp; Studies</span>
+    <span class="sub">A social science quarterly on China, Taiwan, and East Asian affairs · Author guidance distilled from referee reports</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var TOTAL = 9;
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('#list input'));
+    var bar = document.getElementById('bar');
+    var count = document.getElementById('count');
+    var verdict = document.getElementById('verdict');
+
+    function tier(n){
+      if(n === 0) return {label:'Not yet ready', color:'#a5392b'};
+      if(n < 4)  return {label:'Real risk of rejection', color:'#a5392b'};
+      if(n < 7)  return {label:'Getting there', color:'#d8a13a'};
+      if(n < 9)  return {label:'Nearly clear', color:'#7fa890'};
+      return {label:'Ready to submit', color:'#5fbf8e'};
+    }
+    function update(){
+      var n = boxes.filter(function(b){return b.checked;}).length;
+      var t = tier(n);
+      bar.style.width = (n/TOTAL*100) + '%';
+      bar.style.background = t.color;
+      count.textContent = n + ' of ' + TOTAL + ' cleared';
+      verdict.textContent = t.label;
+      verdict.style.color = t.color;
+    }
+    boxes.forEach(function(b){ b.addEventListener('change', update); });
+    update();
+
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      },{threshold:.12});
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    }
+  })();
+</script>
+
+</body>
+</html>
